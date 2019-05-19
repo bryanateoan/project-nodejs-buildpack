@@ -1,12 +1,18 @@
 # Contrast Project Node.js Buildpack
 
-Your project is to add a after-complile Hook to this buildpack. The hook can do anything you want, print a message, show the current weather, output CPU statistics.
+Thank you for your interest in joining Contrast Security.
 
-Please write tests to validate your hook.
+Your project is to:
+
+* Fork or clone this repository 
+* Add an after-complile Hook to this buildpack. The hook can do anything you want, print a message, show the current weather, output CPU statistics.
+* Write tests to validate your hook.
+* Send us a link to your repository
+
 
 ### Building the Buildpack
 
-To build this buildpack, you'll need [Go](https://www.golang.org) installed. 
+To build this buildpack, you'll need [Go](https://www.golang.org) installed. I recommend 1.12 or later. The buildpack will not build on 1.10 or earlier. 
 
 Once Go is installed, run the following commands from the buildpack's directory:
 
@@ -37,8 +43,6 @@ To test this buildpack, run the following command from the buildpack's directory
    ```bash
    source .envrc
    ```
-   To simplify the process in the future, install [direnv](https://direnv.net/) which will automatically source .envrc when you change directories.
-
 1. Run unit tests
 
     ```bash
