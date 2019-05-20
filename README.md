@@ -31,7 +31,7 @@ Once Go is installed, run the following commands from the buildpack's directory:
 1. Build the buildpack
 
     ```bash
-    buildpack-packager build -stack cflinux3
+    buildpack-packager build -any-stack
     ```
 
 ### Testing
