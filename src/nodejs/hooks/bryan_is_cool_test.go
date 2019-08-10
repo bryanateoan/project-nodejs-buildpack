@@ -1,6 +1,7 @@
 package hooks_test
 
 import (
+	"os"
 	"bytes"
 	"github.com/cloudfoundry/libbuildpack"
 	"github.com/cloudfoundry/nodejs-buildpack/src/nodejs/hooks"
@@ -53,6 +54,24 @@ var _ = Describe("bryanHook", func() {
 				Expect(err).To(MatchError("no message to print"))
 				Expect(buffer.String()).To(ContainSubstring("Failing build..."))
 				Expect(buffer.String()).To(ContainSubstring("ERROR"))
+			})
+		})
+
+		Context("Demo the message, logger is stdout", func() {
+			BeforeEach(func() {
+				logger = libbuildpack.NewLogger(os.Stdout)
+				bryan = hooks.BryanHook{
+					Message: "Bryan is Cool",
+					Log: logger,
+				}
+			})
+			JustBeforeEach(func() {
+				args := []string{"", "", "", ""}
+				stager = libbuildpack.NewStager(args, logger, &libbuildpack.Manifest{})
+			})
+			It("Demo message", func() {
+				err = bryan.AfterCompile(stager)
+				Expect(err).To(BeNil())
 			})
 		})
 	})
