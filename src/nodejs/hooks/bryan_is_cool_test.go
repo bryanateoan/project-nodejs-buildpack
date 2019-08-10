@@ -39,5 +39,21 @@ var _ = Describe("bryanHook", func() {
 				Expect(buffer.String()).To(ContainSubstring("Bryan is Cool"))
 			})
 		})
+
+		Context("Message is empty", func() {
+			BeforeEach(func() {
+				bryan = hooks.BryanHook{
+					Message: "",
+					Log: logger,
+				}
+			})
+			It("returns an error ", func() {
+				err = bryan.AfterCompile(stager)
+				Expect(err).NotTo(BeNil())
+				Expect(err).To(MatchError("no message to print"))
+				Expect(buffer.String()).To(ContainSubstring("Failing build..."))
+				Expect(buffer.String()).To(ContainSubstring("ERROR"))
+			})
+		})
 	})
 })
