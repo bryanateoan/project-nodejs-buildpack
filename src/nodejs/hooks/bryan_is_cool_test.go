@@ -33,7 +33,7 @@ var _ = Describe("bryanHook", func() {
 	})
 
 	Describe("AfterCompile", func() {
-		Context("Message is said", func() {
+		Context("Message is valid", func() {
 			It("says the message", func() {
 				err = bryan.AfterCompile(stager)
 				Expect(err).To(BeNil())
