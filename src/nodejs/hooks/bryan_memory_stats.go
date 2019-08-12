@@ -34,11 +34,13 @@ func (h BryanMemoryStatsHook) printMemStats() {
 	runtime.ReadMemStats(&m)
 	
 	h.Log.Debug("Printing memory statistics")
+	h.printHeader(&m)
 	h.printMemAlloc(&m)
 	h.printMemTotalAlloc(&m)
 	h.printMemSys(&m)
 	h.printMemFrees(&m)
 	h.printMemNumGC(&m)
+	h.printFooter(&m)
 }
 
 func (h BryanMemoryStatsHook) printMemAlloc(m *runtime.MemStats) {
@@ -64,4 +66,14 @@ func (h BryanMemoryStatsHook) printMemFrees(m *runtime.MemStats) {
 func (h BryanMemoryStatsHook) printMemNumGC(m *runtime.MemStats) {
 	h.Log.Debug("Printing MemStats NumGC")
 	h.Log.Info("NumGC (Number of completed GC cyles) = %d", m.NumGC)
+}
+
+func (h BryanMemoryStatsHook) printHeader(m *runtime.MemStats) {
+	h.Log.Debug("Printing Header")
+	h.Log.Info("===Memory Statistics===")
+}
+
+func (h BryanMemoryStatsHook) printFooter(m *runtime.MemStats) {
+	h.Log.Debug("Printing Footer")
+	h.Log.Info("==========")
 }

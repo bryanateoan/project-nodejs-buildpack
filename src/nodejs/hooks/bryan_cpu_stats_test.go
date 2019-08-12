@@ -1,6 +1,7 @@
 package hooks_test
 
 import (
+	"os"
 	"bytes"
 	"github.com/cloudfoundry/libbuildpack"
 	"github.com/cloudfoundry/nodejs-buildpack/src/nodejs/hooks"
@@ -32,6 +33,9 @@ var _ = Describe("bryanCpuStatsHook", func() {
 	})
 
 	Describe("AfterCompile", func() {
+		var(
+			oldBpDebug string
+		)
 		Context("Cpu statistics are printed", func() {
 			BeforeEach(func() {
 				err = bryan.AfterCompile(stager)
@@ -53,6 +57,34 @@ var _ = Describe("bryanCpuStatsHook", func() {
 				Expect(buffer.String()).To(ContainSubstring("=========="))
 			})
 
+		})
+
+		Context("Debug mode is true", func() {
+			BeforeEach(func() {
+				oldBpDebug = os.Getenv("BP_DEBUG")
+				os.Setenv("BP_DEBUG", "TRUE")
+				err = bryan.AfterCompile(stager)
+			})
+
+			AfterEach(func() {
+				os.Setenv("BP_DEBUG", oldBpDebug)
+			})
+
+			It("Did not error", func() {
+				Expect(err).To(BeNil())
+			})
+			It("Printed debug message for logical cores", func() {
+				Expect(buffer.String()).To(ContainSubstring("Printing Logical cpu count"))
+			})
+			It("Printed debug message for physical cores", func() {
+				Expect(buffer.String()).To(ContainSubstring("Printing Physical cpu count"))
+			})
+			It("Printed debug message for header", func() {
+				Expect(buffer.String()).To(ContainSubstring("Printing header"))
+			})
+			It("Printed debug message for footer", func() {
+				Expect(buffer.String()).To(ContainSubstring("Printing footer"))
+			})
 		})
 	})
 })
