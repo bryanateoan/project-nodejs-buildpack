@@ -32,10 +32,11 @@ var _ = Describe("bryanMemoryStatsHook", func() {
 	})
 
 	Describe("AfterCompile", func() {
-		Context("Memory Allocation Statistics are printed", func() {
+		Context("Memory statistics are printed", func() {
 			BeforeEach(func() {
 				err = bryan.AfterCompile(stager)
 			})
+
 			It("did not return any error", func() {
 				Expect(err).To(BeNil())
 			})
