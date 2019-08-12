@@ -24,7 +24,7 @@ func (h BryanSystemStatsHook) AfterCompile(stager *libbuildpack.Stager) error{
 }
 
 /*
-*	prints out the current memory allocator statistics during the call.
+*	prints out the current memory statistics during the call.
 * 	example from https://golangcode.com/print-the-current-memory-usage/
 *	runtime memstats : https://golang.org/src/runtime/mstats.go
 */
