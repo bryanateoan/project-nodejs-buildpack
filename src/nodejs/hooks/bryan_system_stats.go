@@ -53,7 +53,7 @@ func (h BryanSystemStatsHook) printMemTotalAlloc(m *runtime.MemStats) {
 
 func (h BryanSystemStatsHook) printMemSys(m *runtime.MemStats) {
 	h.Log.Debug("Printing MemStats Sys")
-	h.Log.Info("Sys (Total bytes of Memory from OS) = %d bytes", m.Sys)
+	h.Log.Info("Sys (Total bytes of Memory obtained from OS) = %d bytes", m.Sys)
 }
 
 func (h BryanSystemStatsHook) printMemFrees(m *runtime.MemStats) {
@@ -65,4 +65,3 @@ func (h BryanSystemStatsHook) printMemNumGC(m *runtime.MemStats) {
 	h.Log.Debug("Printing MemStats NumGC")
 	h.Log.Info("NumGC (Number of completed GC cyles) = %d", m.NumGC)
 }
-

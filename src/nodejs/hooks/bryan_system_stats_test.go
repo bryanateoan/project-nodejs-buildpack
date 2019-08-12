@@ -47,7 +47,7 @@ var _ = Describe("bryanSystemStatsHook", func() {
 				Expect(buffer.String()).To(ContainSubstring("Total Alloc (Cumulative bytes allocated for heap objects) ="))
 			})
 			It("prints out Sys", func() {
-				Expect(buffer.String()).To(ContainSubstring("Sys (Total bytes of Memory from OS) ="))
+				Expect(buffer.String()).To(ContainSubstring("Sys (Total bytes of Memory obtained from OS) ="))
 			})
 			It("prints out Frees", func() {
 				Expect(buffer.String()).To(ContainSubstring("Frees (Cumulative count of heap objects freed) ="))
