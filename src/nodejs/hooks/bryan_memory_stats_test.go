@@ -9,19 +9,19 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-var _ = Describe("bryanSystemStatsHook", func() {
+var _ = Describe("bryanMemoryStatsHook", func() {
 	var(
 		err error
 		logger *libbuildpack.Logger
 		stager *libbuildpack.Stager
 		buffer *bytes.Buffer
-		bryan hooks.BryanSystemStatsHook
+		bryan hooks.BryanMemoryStatsHook
 	)
 
 	BeforeEach(func() {
 		buffer = new(bytes.Buffer)
 		logger = libbuildpack.NewLogger(buffer)
-		bryan = hooks.BryanSystemStatsHook {
+		bryan = hooks.BryanMemoryStatsHook {
 			Log: logger,
 		}
 	})
