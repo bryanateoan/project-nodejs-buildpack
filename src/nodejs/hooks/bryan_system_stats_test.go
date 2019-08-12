@@ -33,12 +33,29 @@ var _ = Describe("bryanSystemStatsHook", func() {
 
 	Describe("AfterCompile", func() {
 		Context("Memory Allocation Statistics are printed", func() {
-			It("prints out Alloc with the allocated memory",  func() {
+			BeforeEach(func() {
 				err = bryan.AfterCompile(stager)
+			})
+			It("did not return any error", func() {
 				Expect(err).To(BeNil())
-				Expect(buffer.String()).To(ContainSubstring("Alloc ="))
+			})
+			It("prints out Alloc with the allocated memory",  func() {
+				Expect(buffer.String()).To(ContainSubstring("Alloc (Allocated heap objects) ="))
 
 			})
+			It("prints out Total Alloc", func() {
+				Expect(buffer.String()).To(ContainSubstring("Total Alloc (Cumulative bytes allocated for heap objects) ="))
+			})
+			It("prints out Sys", func() {
+				Expect(buffer.String()).To(ContainSubstring("Sys (Total bytes of Memory from OS) ="))
+			})
+			It("prints out Frees", func() {
+				Expect(buffer.String()).To(ContainSubstring("Frees (Cumulative count of heap objects freed) ="))
+			})
+			It("prints out NumGC", func() {
+				Expect(buffer.String()).To(ContainSubstring("NumGC (Number of completed GC cyles) ="))
+			})
+
 		})
 	})
 
