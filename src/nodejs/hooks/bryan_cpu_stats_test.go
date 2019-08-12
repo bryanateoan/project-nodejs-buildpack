@@ -46,6 +46,12 @@ var _ = Describe("bryanCpuStatsHook", func() {
 			It("Printed the Physical cores", func() {
 				Expect(buffer.String()).To(ContainSubstring("Physical CPU count: "))
 			})
+			It("Printed the Header", func() {
+				Expect(buffer.String()).To(ContainSubstring("===CPU Statistics==="))
+			})
+			It("Printed the Footer", func() {
+				Expect(buffer.String()).To(ContainSubstring("=========="))
+			})
 
 		})
 	})
